@@ -1,10 +1,10 @@
 
 use clap::{App, Arg};
-use rand::{seq::{SliceRandom, IteratorRandom}};
+use rand::seq::{SliceRandom, IteratorRandom};
 
 fn main() {
-    let _application = App::new("Passify")
-        .about("Creates a random password with confiruable parameters in the command line.")
+    let application = App::new("Passify")
+        .about("Creates a random password with confiruable arguments in the command line.")
         .version(env!("CARGO_PKG_VERSION"))
         .author(env!("CARGO_PKG_AUTHORS"))
         .arg(
@@ -22,13 +22,13 @@ fn main() {
         .get_matches();
 
     // Parse Arguments
-    let password_size = _application
+    let password_size = application
         .value_of("length")
         .unwrap_or("10")
         .parse::<i16>()
         .unwrap_or(10);
 
-    let symbols = _application.is_present("symbols");
+    let symbols = application.is_present("symbols");
 
     // Generate password and output it
     let password = generate_password(password_size, symbols);    
