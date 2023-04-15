@@ -1,6 +1,7 @@
 
 use clap::{App, Arg};
 use rand::seq::{SliceRandom, IteratorRandom};
+use arboard::Clipboard;
 
 fn main() {
     let application = App::new("Passify")
@@ -30,9 +31,15 @@ fn main() {
 
     let symbols = application.is_present("symbols");
 
-    // Generate password and output it
-    let password = generate_password(password_size, symbols);    
+    // Generate password
+    let password = generate_password(password_size, symbols);
+
+    // Output password to the command line
     println!("{}", password);
+
+    // Save password to the clipboard
+    let mut clipboard = Clipboard::new().unwrap();
+    clipboard.set_text(password).unwrap();
 }
 
 fn generate_password(length: i16, symbols: bool) -> String {
