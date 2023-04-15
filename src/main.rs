@@ -31,7 +31,7 @@ fn generate_password(length: i16) -> String {
     let mut password = String::new();
     let mut random = rand::thread_rng();
 
-    let character_sets = vec!["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVW"];
+    let character_sets = vec!["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVW", "01234567891"];
 
     for _ in 0..length {
         let character_set = character_sets.choose(&mut random);
